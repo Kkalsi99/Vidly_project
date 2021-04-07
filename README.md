@@ -1,5 +1,6 @@
 # Getting Started with Create React App
 
+This project was made just for learning Reactjs.This project was made with the help from Mosh Reactjs course.
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
