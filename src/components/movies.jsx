@@ -46,7 +46,7 @@ class Movies extends Component {
   handleGenreSelect(genre) {
     this.setState({ selectedGenre: genre, currentPage: 1 });
   }
-  render() {
+  getPageData() {
     const filteredMovies =
       this.state.selectedGenre && this.state.selectedGenre._id
         ? this.state.movies.filter(
@@ -63,6 +63,10 @@ class Movies extends Component {
       this.state.currentPage,
       this.state.pageSize
     );
+    return { totalCount: filteredMovies.length, movies: movies };
+  }
+  render() {
+    const { totalCount, data: filteredMovies, movies } = this.getPageData();
     let count = this.state.movies.length;
     return count === 0 ? (
       "There no Movies in the Database"
@@ -76,7 +80,7 @@ class Movies extends Component {
           />
         </div>
         <div className="col">
-          <p>showing {filteredMovies.length} movies in the database</p>
+          <p>showing {totalCount} movies in the database</p>
           <MoviesTable
             movies={movies}
             onLike={this.handleLike}
@@ -85,7 +89,7 @@ class Movies extends Component {
             sortColumn={this.state.sortColumn}
           />
           <Pagination
-            itemsCount={filteredMovies.length}
+            itemsCount={totalCount}
             pageSize={this.state.pageSize}
             currentPage={this.state.currentPage}
             onPageChange={this.handlePageChange}
