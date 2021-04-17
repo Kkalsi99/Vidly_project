@@ -9,7 +9,7 @@ const ListGroup = (props) => {
     onItemSelect,
   } = props;
   return (
-    <div>
+    <div className="container mt-2">
       <ul className="list-group">
         {items.map((item) => (
           <li
@@ -17,8 +17,8 @@ const ListGroup = (props) => {
             onClick={() => onItemSelect(item)}
             className={
               item === selectedItem
-                ? "list-group-item active"
-                : "list-group-item"
+                ? "list-group-item clickable active"
+                : "list-group-item clickable"
             }
           >
             {item[textProperty]}

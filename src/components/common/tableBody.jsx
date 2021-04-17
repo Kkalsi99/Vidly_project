@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import _ from "lodash";
+
 class TableBody extends Component {
   renderCell(item, column) {
     if (column.content) return column.content(item);
@@ -7,6 +8,9 @@ class TableBody extends Component {
   }
   createKey(item, column) {
     return item._id + (column.path || column.key);
+  }
+  createLink(link) {
+    return "/movies/" + link._id;
   }
   render() {
     const { data, columns } = this.props;

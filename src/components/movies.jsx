@@ -66,7 +66,7 @@ class Movies extends Component {
     return { totalCount: filteredMovies.length, movies: movies };
   }
   render() {
-    const { totalCount, data: filteredMovies, movies } = this.getPageData();
+    const { totalCount, movies } = this.getPageData();
     let count = this.state.movies.length;
     return count === 0 ? (
       "There no Movies in the Database"
