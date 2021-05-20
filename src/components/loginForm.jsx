@@ -1,54 +1,40 @@
-import React, { Component } from "react";
+import React from "react";
 
-class LoginForm extends Component {
+import Joi from "joi-browser";
+
+import Form from "./common/form";
+
+class LoginForm extends Form {
   constructor() {
     super();
+    this.schema = {
+      username: Joi.string().required().label("Username"),
+      password: Joi.string().required().label("Password"),
+    };
     this.state = {
-      account: {
+      data: {
         username: "",
         password: "",
       },
+      errors: {},
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.validate = this.validate.bind(this);
+    this.validateProperty = this.validateProperty.bind(this);
   }
-  handleSubmit(e) {
-    e.preventDefault();
-    console.log("submiited");
-  }
-  handleChange(e) {
-    const account = { ...this.state.account };
-    account[e.currentTarget.name] = e.currentTarget.value;
-    this.setState({ account });
+
+  doSubmit() {
+    console.log("Submitted");
   }
   render() {
-    const { account } = this.state;
     return (
       <div className="container">
         <h1>LoginForm</h1>
         <form onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="username">Username</label>
-            <input
-              value={account.username}
-              name="username"
-              onChange={this.handleChange}
-              id="username"
-              type="text"
-              className="form-control"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input
-              value={account.password}
-              onChange={this.handleChange}
-              id="password"
-              name="password"
-              type="text"
-              className="form-control"
-            />
-          </div>
-          <button className="btn-primary btn">Login</button>
+          {this.renderInput("username", "Username")}
+          {this.renderInput("password", "Password", "password")}
+          {this.renderButton("Login")}
         </form>
       </div>
     );

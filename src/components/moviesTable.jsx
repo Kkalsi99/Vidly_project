@@ -15,8 +15,8 @@ class MoviesTable extends Component {
         ),
       },
       { path: "genre.name", label: "Genre" },
-      { path: "numberInStock", label: "Title" },
-      { path: "dailyRentalRate", label: "Title" },
+      { path: "numberInStock", label: "Number in Stock" },
+      { path: "dailyRentalRate", label: "Daily Rental Rate" },
       {
         key: "like",
         content: (movie) => (
@@ -30,7 +30,7 @@ class MoviesTable extends Component {
         key: "delete",
         content: (movie) => (
           <button
-            onClick={() => this.props.onDelete(movie._id)}
+            onClick={() => this.props.onDelete(movie)}
             className="btn btn-danger"
           >
             Delete
